@@ -164,8 +164,8 @@ if ( ! function_exists( 'wizhi_shortcode_title_list' ) ) {
 
 		$retour = '';
 		if ( $heading == false || empty( $tax ) ) {
-			$retour .= '<div class="zui-list-' . $type . $tag . '">';
-			$retour .= '<ul class="zui-list">';
+			$retour .= '<div class="ui-list-' . $type . $tag . '">';
+			$retour .= '<ul class="ui-list">';
 			while ( $the_query->have_posts() ) : $the_query->the_post();
 
 				//custom links
@@ -174,7 +174,7 @@ if ( ! function_exists( 'wizhi_shortcode_title_list' ) ) {
 					$cus_links = get_permalink();
 				}
 
-				$retour .= '<li class="zui-list-item">';
+				$retour .= '<li class="ui-list-item">';
 				if ( $time == 'true' ) {
 					$retour .= '<span class="pull-right time">' . get_the_time( 'm-d' ) . '</span>';
 				} else {
@@ -186,12 +186,12 @@ if ( ! function_exists( 'wizhi_shortcode_title_list' ) ) {
 			$retour .= '</ul>';
 			$retour .= '</div>';
 		} else {
-			$retour .= '<div class="zui-box ' . $type . $tag . '">';
-			$retour .= '<div class="zui-box-head">';
-			$retour .= '<h3 class="zui-box-head-title"><a href="' . $cat_link . '">' . $cat_name . '</a></h3>';
+			$retour .= '<div class="ui-box ' . $type . $tag . '">';
+			$retour .= '<div class="ui-box-head">';
+			$retour .= '<h3 class="ui-box-head-title"><a href="' . $cat_link . '">' . $cat_name . '</a></h3>';
 			$retour .= '<a class="more pull-right" href="' . $cat_link . '" target="_blank">更多></a>';
 			$retour .= '</div>';
-			$retour .= '<div class="zui-box-container"><ul class="zui-list zui-list-' . $tag . '">';
+			$retour .= '<div class="ui-box-container"><ul class="ui-list ui-list-' . $tag . '">';
 			while ( $the_query->have_posts() ) : $the_query->the_post();
 
 				//custom links
@@ -200,7 +200,7 @@ if ( ! function_exists( 'wizhi_shortcode_title_list' ) ) {
 					$cus_links = get_permalink();
 				}
 
-				$retour .= '<li class="zui-list-item">';
+				$retour .= '<li class="ui-list-item">';
 				if ( $time == 'true' ) {
 					$retour .= '<span class="pull-right time">' . get_the_time( 'm-d' ) . '</span>';
 				} else {
@@ -278,11 +278,11 @@ if ( ! function_exists( 'wizhi_shortcode_photo_list' ) ) {
     }
 
 		if ( $position == "left" ) {
-			$position = "zui-media-cap-left";
+			$position = "media-cap-left";
 		} elseif ( $position == "right" ) {
-			$position = "zui-media-cap-right";
+			$position = "media-cap-right";
 		} else {
-			$position = "zui-media-cap-top";
+			$position = "media-cap-top";
 		}
 
 		// 输出
@@ -291,7 +291,7 @@ if ( ! function_exists( 'wizhi_shortcode_photo_list' ) ) {
 		$retour   = '';
 
 		if ( $heading == false || empty( $tax ) ) {
-			$retour .= '<div class="zui-medias zui-media-' . $type . $tag . '">';
+			$retour .= '<div class="medias media-' . $type . $tag . '">';
 			while ( $wp_query->have_posts() ) : $wp_query->the_post();
 
 				//custom links
@@ -301,17 +301,17 @@ if ( ! function_exists( 'wizhi_shortcode_photo_list' ) ) {
 				}
 
 				$retour .= '<div class="' . $class . '">';
-				$retour .= '<div class=" zui-media">';
+				$retour .= '<div class=" media">';
 				if ( ! empty( $thumbs ) ) {
-					$retour .= '<a class="zui-media-cap ' . $position . '" target="_blank" href="' . $cus_links . '">';
+					$retour .= '<a class="media-cap ' . $position . '" target="_blank" href="' . $cus_links . '">';
 					if ( has_post_thumbnail() ) {
 						$retour .= get_the_post_thumbnail( $post->ID, $thumbs );
 					}
 					$retour .= '</a>';
 				}
 				if ( ! empty( $content ) ) {
-					$retour .= '<div class="zui-media-body">';
-					$retour .= '<div class="zui-media-body-title"><a href="' . $cus_links . '">' . wp_trim_words( $post->post_title, $cut, "..." ) . '</a></div>';
+					$retour .= '<div class="media-body">';
+					$retour .= '<div class="media-body-title"><a href="' . $cus_links . '">' . wp_trim_words( $post->post_title, $cut, "..." ) . '</a></div>';
 					$retour .= wp_trim_words( $post->post_content, $content, "..." );
 					$retour .= '</div>';
 				} else {
@@ -326,15 +326,15 @@ if ( ! function_exists( 'wizhi_shortcode_photo_list' ) ) {
 			$retour .= '</div>';
 
 		} else {
-			$retour .= '<div class="zui-box ' . $type . $tag . '">';
-			$retour .= '<div class="zui-box-head">';
-			$retour .= '<h3 class="zui-box-head-title"><a href="' . $cat_link . '">' . $cat_name . '</a></h3>';
+			$retour .= '<div class="ui-box ' . $type . $tag . '">';
+			$retour .= '<div class="ui-box-head">';
+			$retour .= '<h3 class="ui-box-head-title"><a href="' . $cat_link . '">' . $cat_name . '</a></h3>';
 			$retour .= '<a class="more pull-right" href="' . $cat_link . '" target="_blank">更多></a>';
 			$retour .= '</div>';
-			$retour .= '<div class="zui-box-container">';
-			$retour .= '<div class="zui-box-content">';
+			$retour .= '<div class="ui-box-container">';
+			$retour .= '<div class="ui-box-content">';
 
-			$retour .= '<div class="zui-medias zui-media-' . $tag . '">';
+			$retour .= '<div class="medias media-' . $tag . '">';
 			while ( $wp_query->have_posts() ) : $wp_query->the_post();
 
 				//custom links
@@ -345,17 +345,17 @@ if ( ! function_exists( 'wizhi_shortcode_photo_list' ) ) {
 
 				setup_postdata( $post );
 				$retour .= '<div class="' . $class . '">';
-				$retour .= '<div class="zui-media">';
+				$retour .= '<div class="media">';
 				if ( ! empty( $thumbs ) ) {
-					$retour .= '<a class="zui-media-cap ' . $position . '" target="_blank" href="' . $cus_links . '">';
+					$retour .= '<a class="media-cap ' . $position . '" target="_blank" href="' . $cus_links . '">';
 					if ( has_post_thumbnail() ) {
 						$retour .= get_the_post_thumbnail( $post->ID, $thumbs );
 					}
 					$retour .= '</a>';
 				}
 				if ( ! empty( $content ) ) {
-					$retour .= '<div class="zui-media-body">';
-					$retour .= '<div class="zui-media-body-title"><a href="' . $cus_links . '">' . wp_trim_words( $post->post_title, $cut, "..." ) . '</a></div>';
+					$retour .= '<div class="media-body">';
+					$retour .= '<div class="media-body-title"><a href="' . $cus_links . '">' . wp_trim_words( $post->post_title, $cut, "..." ) . '</a></div>';
 					$retour .= wp_trim_words( $post->post_content, $content, "..." );
 					$retour .= '</div>';
 				} else {
