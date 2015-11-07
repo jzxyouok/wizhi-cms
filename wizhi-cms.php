@@ -20,6 +20,7 @@ require_once(WIZHI_CMS . 'modules/pagination.php');
 
 //常用简码
 require_once(WIZHI_CMS . 'modules/shortcodes.php');
+require_once(WIZHI_CMS . 'modules/shortcodes-ui.php');
 
 //过滤菜单和分类列表HTML
 require_once(WIZHI_CMS . 'modules/walker.php');

@@ -345,9 +345,9 @@ if ( ! function_exists( 'wizhi_shortcode_photo_list' ) ) {
 
 				setup_postdata( $post );
 				$retour .= '<div class="' . $class . '">';
-				$retour .= '<div class="media">';
+				$retour .= '<div class="media ' . $position . '">';
 				if ( ! empty( $thumbs ) ) {
-					$retour .= '<a class="media-cap ' . $position . '" target="_blank" href="' . $cus_links . '">';
+					$retour .= '<a class="media-cap" target="_blank" href="' . $cus_links . '">';
 					if ( has_post_thumbnail() ) {
 						$retour .= get_the_post_thumbnail( $post->ID, $thumbs );
 					}
@@ -399,6 +399,7 @@ if ( ! function_exists( 'wizhi_shortcode_slider' ) ) {
 			'tag'         => 'default',
 			'num'         => 8,
 			'cut'         => 36,
+			'content'     => 60,
 			'thumbs'      => 'show',
 			'mode'        => 'horizontal',
 			'speed'       => 500,
@@ -473,9 +474,14 @@ if ( ! function_exists( 'wizhi_shortcode_slider' ) ) {
 				$retour .= get_the_post_thumbnail( $post->ID, $thumbs );
 			}
 			if ( ! empty( $cut ) ) {
-				$retour .= '<p class="bx-caption"><span>' . wp_trim_words( $post->post_title, $cut, "..." ) . '</span></p>';
+				$retour .= '<div class="bx-caption"><span>' . wp_trim_words( $post->post_title, $cut, "..." ) . '</span>';
+				if ( ! empty( $content ) ) {
+					$retour .= '<span class="bx-desc">' . wp_trim_words( $post->post_content, $content, "..." ) . '</span>';
+				}
+				$retour .= '</div>';
 			}
 			$retour .= '</a>';
+			
 			$retour .= '</li>';
 
 		endwhile;
@@ -508,7 +514,8 @@ if ( ! function_exists( 'wizhi_slider_js' ) ) {
 				jQuery(document).ready(function ($) {
 					$('#bxslider-<?php echo $id ?>').bxSlider({
 						mode: 'fade',
-						captions: true
+						captions: true,
+						auto: <?php echo $options["auto"] ?>,
 					});
 				});
 			</script>
