@@ -20,18 +20,139 @@ function wizhi_shortcode_page_cont_ui() {
         return;
     }
 
+
+    // 显示按钮
+    shortcode_ui_register_for_shortcode(
+        'button',
+        array(
+            'label' => '按钮',
+            'listItemImage' => 'dashicons-external',
+            'attrs' => array(
+                array(
+                    'label' => __( '按钮颜色' ),
+                    'attr'  => 'type',
+                    'type'  => 'select',
+                    'options' => array(
+                        'ok' => '绿色',
+                        'warning' => '黄色',
+                        'error' => '红色',
+                    ),
+                ),
+                array(
+                    'label' => __( '按钮尺寸' ),
+                    'attr'  => 'size',
+                    'type'  => 'select',
+                    'options' => array(
+                        'small' => '小尺寸',
+                        'large' => '大尺寸',
+                        'xlarge' => '特大尺寸',
+                    ),
+                ),
+                array(
+                    'label' => __( '按钮文字' ),
+                    'attr'  => 'text',
+                    'type'  => 'text',
+                    'value' => '链接文本',
+                ),
+                array(
+                    'label' => __( '按钮连接' ),
+                    'attr'  => 'url',
+                    'type'  => 'url',
+                    'value' => 'http://',
+                ),
+            ),
+        )
+    );
+
+
+    // 显示分割线
+    shortcode_ui_register_for_shortcode(
+        'divider',
+        array(
+            'label' => '分割线',
+            'listItemImage' => 'dashicons-minus',
+            'attrs' => array(
+                array(
+                    'label' => __( '分割线类型' ),
+                    'attr'  => 'type',
+                    'type'  => 'select',
+                    'options' => array(
+                        'solid' => '实线',
+                        'shadow' => '投影',
+                    ),
+                ),
+            ),
+        )
+    );
+
+
+    // 显示内容标题
+    shortcode_ui_register_for_shortcode(
+        'heading',
+        array(
+            'label' => '标题',
+            'listItemImage' => 'dashicons-editor-bold',
+            'attrs' => array(
+                array(
+                    'label' => __( '标题类型' ),
+                    'attr'  => 'type',
+                    'type'  => 'select',
+                    'options' => array(
+                        'background' => '背景',
+                        'border' => '底部边框',
+                    ),
+                ),
+                array(
+                    'label' => __( '内容' ),
+                    'attr'  => 'content',
+                    'type'  => 'text',
+                    'value' => '这是标题内容',
+                )
+            ),
+        )
+
+    );
+
+
+    // 显示提示信息
+    shortcode_ui_register_for_shortcode(
+        'alert',
+        array(
+            'label' => '提示信息',
+            'listItemImage' => 'dashicons-info',
+            'attrs' => array(
+                array(
+                    'label' => __( '信息类型' ),
+                    'attr'  => 'type',
+                    'type'  => 'select',
+                    'options' => array(
+                        'success' => '成功提示（绿色））',
+                        'warning' => '警告提示（黄色））',
+                        'error' => '失败提示（红色））',
+                    ),
+                ),
+                array(
+                    'label' => __( '提示内容' ),
+                    'attr'  => 'content',
+                    'type'  => 'textarea',
+                    'value' => '请输入提示信息内容',
+                ),
+            ),
+        )
+    );
+
     // 创建显示页面内容UI
     shortcode_ui_register_for_shortcode(
         'page_cont',
         array(
-            'label' => '显示页面内容',
+            'label' => '页面内容',
             'listItemImage' => 'dashicons-media-document',
             'attrs' => array(
                 array(
                     'label' => __( '页面ID' ),
                     'attr'  => 'id',
-                    'type'  => 'text',
-                    'value' => '1',
+                    'type' => 'post_select',
+                    'query' => array( 'post_type' => 'page' ),
                 ),
                 array(
                     'label' => __( '内容字数' ),
@@ -191,7 +312,7 @@ function wizhi_shortcode_page_cont_ui() {
         'slider',
         array(
             'label' => '幻灯',
-            'listItemImage' => 'dashicons-media-interactive',
+            'listItemImage' => 'dashicons-slides',
             'attrs' => array(
                 array(
                     'label' => __( '文章类型' ),

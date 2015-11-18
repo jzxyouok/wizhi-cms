@@ -1,17 +1,123 @@
 <?php
 /**
  * Wizhi Shortcode
- *
+ * Wizhi CMS 插件使用的简码
  */
 
 /*-----------------------------------------------------------------------------------*/
-/* 显示文章
+/* 显示分割线
 /*-----------------------------------------------------------------------------------*/
 
-/* 以下为自定义功能，在主题升级的时候，直接拷贝到相关文件内即可。
- * 增加了文章标题列表和slider 幻灯共4中简码功能。
- * 使用方法：<?php echo do_shortcode('[page_cont id="1" cut="20" more="ture"]'); ?>
+/* 显示几种不同类型的分割线
+ * 使用方法：<?php echo do_shortcode('[divider type="solid"]'); ?>
  */
+
+
+if ( ! function_exists( 'wizhi_shortcode_divider' ) ) {
+	function wizhi_shortcode_divider( $atts ) {
+		$default = array(
+			'type'   => 'solid',
+		);
+		extract( shortcode_atts( $default, $atts ) );
+
+		// 输出
+		$retour = '';
+        $retour .= '<div class="ui-divider ui-divider-' . $type . '"></div>';
+
+		return $retour;
+
+	}
+}
+add_shortcode( 'divider', 'wizhi_shortcode_divider' );
+
+
+
+/*-----------------------------------------------------------------------------------*/
+/* 显示不同类型的标题
+/*-----------------------------------------------------------------------------------*/
+
+/* 显示几种不同类型的分割线
+ * 使用方法：<?php echo do_shortcode('[heading type="background" content="这是二级标题"]'); ?>
+ */
+
+
+if ( ! function_exists( 'wizhi_shortcode_heading' ) ) {
+    function wizhi_shortcode_heading( $atts ) {
+        $default = array(
+            'type'   => 'background',
+            'content'=> '这是二级标题',
+        );
+        extract( shortcode_atts( $default, $atts ) );
+
+        // 输出
+        $retour = '';
+        $retour .= '<h2 class="ui-heading-' . $type . '">' . $content . '</h2>';
+
+        return $retour;
+
+    }
+}
+add_shortcode( 'heading', 'wizhi_shortcode_heading' );
+
+
+
+
+/*-----------------------------------------------------------------------------------*/
+/* 显示提示消息
+/*-----------------------------------------------------------------------------------*/
+
+/* 显示几种不同类型的提示消息
+ * 使用方法：<?php echo do_shortcode('[alert type="success" content="这是提示信息"]'); ?>
+ */
+
+
+if ( ! function_exists( 'wizhi_shortcode_alert' ) ) {
+    function wizhi_shortcode_alert( $atts ) {
+        $default = array(
+            'type'   => 'success',
+            'content'=> '这是提示信息。'
+        );
+        extract( shortcode_atts( $default, $atts ) );
+
+        // 输出
+        $retour = '';
+        $retour .= '<div class="ui-alert ui-alert-' . $type . '">' . $content . '</div>';
+
+        return $retour;
+
+    }
+}
+add_shortcode( 'alert', 'wizhi_shortcode_alert' );
+
+
+/*-----------------------------------------------------------------------------------*/
+/* 显示链接按钮
+/*-----------------------------------------------------------------------------------*/
+
+/* 显示几种不同类型的分割线
+ * 使用方法：<?php echo do_shortcode('[button type="success" size='' text="这是链接" url="http://www.baidu.com"]'); ?>
+ */
+
+
+if ( ! function_exists( 'wizhi_shortcode_button' ) ) {
+    function wizhi_shortcode_button( $atts ) {
+        $default = array(
+            'type'   => 'success',
+            'size'   => '',
+            'text'   => '这是链接',
+            'url'    => 'http://',
+        );
+        extract( shortcode_atts( $default, $atts ) );
+
+        // 输出
+        $retour = '';
+        $retour .= '<a class="pure-button button-' . $type . ' button-' . $size . '" href="' . $url . '">' . $text . '</a>';
+
+        return $retour;
+
+    }
+}
+add_shortcode( 'button', 'wizhi_shortcode_button' );
 
 
 /* 获取某个页面的内容 */
@@ -20,7 +126,8 @@ if ( ! function_exists( 'wizhi_shortcode_page_cont' ) ) {
 	function wizhi_shortcode_page_cont( $atts ) {
 		$default = array(
 			'id'   => 1,
-			'cut'  => 200,
+			'cont'  => 200,
+			'thumbs' => 'thumbnail',
 			'more' => true
 		);
 		extract( shortcode_atts( $default, $atts ) );
@@ -29,7 +136,13 @@ if ( ! function_exists( 'wizhi_shortcode_page_cont' ) ) {
 
 		// 输出
 		$retour = '';
-		$retour .= wp_trim_words( $page->post_content, $cut, "..." );
+		
+		$retour .= '<a target="_blank" href="' . get_page_link( $id ) . '">';
+		$retour .= get_the_post_thumbnail( $id, $thumbs );
+		$retour .= '</a>';
+
+		$retour .= wp_trim_words( $page->post_content, $cont, "..." );
+
 		if ( $more == true ) {
 			$retour .= '<a target="_blank" href="' . get_page_link( $id ) . '">更多>></a>';
 		} else {
@@ -48,7 +161,7 @@ add_shortcode( 'page_cont', 'wizhi_shortcode_page_cont' );
 
 /* 根据自定义分类显示文章
  * 输出标题文章列表时实现，默认带标题
- * 使用方法：[wizhi_loop type="home" tax="home_tag" tag="yxdt" num="6" cut="26" heading="false" time="true" sticky="true"]
+ * 使用方法：[wizhi_loop type="home" tax="home_tag" tag="yxdt" num="6" tp="content" offset="0"]
  * todo：可以实现更多的参数控制
 */
 if ( ! function_exists( 'wizhi_shortcode_loop' ) ) {
@@ -90,10 +203,11 @@ if ( ! function_exists( 'wizhi_shortcode_loop' ) ) {
 		);
 
 		// 输出
+		$i = 1;
 		$the_query = new WP_Query( $args );
 
 		while ( $the_query->have_posts() ) : $the_query->the_post();
-			get_template_part( 'content', $tp );
+			get_template_part( 'template-parts/content', $tp );
 		endwhile;
 
 		wp_reset_postdata();
@@ -272,10 +386,10 @@ if ( ! function_exists( 'wizhi_shortcode_photo_list' ) ) {
 
 		$cat      = get_term_by( 'slug', $tag, $tax );
 
-    if ($cat) {
-      $cat_name = $cat->name;
-      $cat_link = get_term_link( $tag, $tax );
-    }
+	    if ($cat) {
+	      $cat_name = $cat->name;
+	      $cat_link = get_term_link( $tag, $tax );
+	    }
 
 		if ( $position == "left" ) {
 			$position = "media-left";
@@ -401,6 +515,7 @@ if ( ! function_exists( 'wizhi_shortcode_slider' ) ) {
 			'cut'         => 36,
 			'content'     => 60,
 			'thumbs'      => 'show',
+			'stype'		  => 'normal',
 			'mode'        => 'horizontal',
 			'speed'       => 500,
 			'auto'        => true,
@@ -422,7 +537,7 @@ if ( ! function_exists( 'wizhi_shortcode_slider' ) ) {
 	      $cat_link = get_term_link( $tag, $tax );
 	    }
 
-		$id = $tax . $tag;
+		$id = $tax . '-' . $tag;
 
 		$options = array(
 			'tax'         => $tax,
@@ -457,32 +572,47 @@ if ( ! function_exists( 'wizhi_shortcode_slider' ) ) {
 		global $post;
 		$wp_query = new WP_Query( $args );
 
-		$retour = '<div class="bx-box">';
+		$retour = '<div class="bx-box bxslider-' . $stype . '">';
 		$retour .= '<ul class="bxslider fix" id="bxslider-' . $id . '">';
 
 		while ( $wp_query->have_posts() ) : $wp_query->the_post();
 
-			// custom links
+			// 自定义链接
 			$cus_links = get_post_meta( $post->ID, 'cus_links', true );
 			if ( empty( $cus_links ) ) {
 				$cus_links = get_permalink();
 			}
 
-			$retour .= '<li class="bx-item">';
-			$retour .= '<a target="_blank" class="item-' . $tax . ' " href="' . $cus_links . '" title="' . get_the_title() . '">';
-			if ( has_post_thumbnail() ) {
-				$retour .= get_the_post_thumbnail( $post->ID, $thumbs );
-			}
-			if ( ! empty( $cut ) ) {
-				$retour .= '<div class="bx-caption"><span>' . wp_trim_words( $post->post_title, $cut, "..." ) . '</span>';
-				if ( ! empty( $content ) ) {
-					$retour .= '<span class="bx-desc">' . wp_trim_words( $post->post_content, $content, "..." ) . '</span>';
+			if ($stype == "full") {
+				// 全宽模式，使用背景显示图片
+				if ( has_post_thumbnail() ) {
+					$feat_image_url = wp_get_attachment_url( get_post_thumbnail_id() );
+           		}
+
+           		$retour .= '<li class="bx-item" style="background-image:url(' . $feat_image_url . ');">';
+				$retour .= '<a target="_blank" class="item-' . $tax . ' " href="' . $cus_links . '" title="' . get_the_title() . '">';
+				$retour .= '<img src="' . get_template_directory_uri() . '/front/dist/images/holder.png">';	
+				$retour .= '</a>';
+				$retour .= '</li>';
+
+			} else {
+				// 普通模式
+				$retour .= '<li class="bx-item">';
+				$retour .= '<a target="_blank" class="item-' . $tax . ' " href="' . $cus_links . '" title="' . get_the_title() . '">';
+				if ( has_post_thumbnail() ) {
+					$retour .= get_the_post_thumbnail( $post->ID, $thumbs );
 				}
-				$retour .= '</div>';
+				if ( ! empty( $cut ) ) {
+					$retour .= '<div class="bx-caption"><span>' . wp_trim_words( $post->post_title, $cut, "..." ) . '</span>';
+					if ( ! empty( $content ) ) {
+						$retour .= '<span class="bx-desc">' . wp_trim_words( $post->post_content, $content, "..." ) . '</span>';
+					}
+					$retour .= '</div>';
+				}
+				$retour .= '</a>';
+				
+				$retour .= '</li>';
 			}
-			$retour .= '</a>';
-			
-			$retour .= '</li>';
 
 		endwhile;
 		$retour .= '</ul></div>';
