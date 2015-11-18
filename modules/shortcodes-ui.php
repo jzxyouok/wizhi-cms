@@ -161,7 +161,7 @@ function wizhi_shortcode_page_cont_ui() {
                     'value' => '120',
                 ),
                 array(
-                    'label' => __( '是否显示更多链接' ),
+                    'label' => __( '显示更多链接' ),
                     'attr'  => 'more',
                     'type'  => 'checkbox',
                     'value' => true,
@@ -215,13 +215,13 @@ function wizhi_shortcode_page_cont_ui() {
                     'value' => '14',
                 ),
                 array(
-                    'label' => __( '是否显示分类名称作为标题' ),
+                    'label' => __( '显示分类名称作为标题' ),
                     'attr'  => 'heading',
                     'type'  => 'checkbox',
                     'value' => true,
                 ),
                 array(
-                    'label' => __( '是否显示文章发布时间' ),
+                    'label' => __( '显示文章发布时间' ),
                     'attr'  => 'time',
                     'type'  => 'checkbox',
                     'value' => false,
@@ -291,7 +291,7 @@ function wizhi_shortcode_page_cont_ui() {
                     'value' => '200',
                 ),
                 array(
-                    'label' => __( '是否显示分类名称作为标题' ),
+                    'label' => __( '显示分类名称作为标题' ),
                     'attr'  => 'heading',
                     'type'  => 'checkbox',
                     'value' => true,
@@ -369,7 +369,7 @@ function wizhi_shortcode_page_cont_ui() {
                     'value' => '500',
                 ),
                 array(
-                    'label' => __( '是否自动播放' ),
+                    'label' => __( '自动播放' ),
                     'attr'  => 'auto',
                     'type'  => 'checkbox',
                     'value' => true,

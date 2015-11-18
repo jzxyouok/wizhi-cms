@@ -128,7 +128,7 @@ if ( ! function_exists( 'wizhi_shortcode_page_cont' ) ) {
 			'id'   => 1,
 			'cont'  => 200,
 			'thumbs' => 'thumbnail',
-			'more' => true
+			'more' => false
 		);
 		extract( shortcode_atts( $default, $atts ) );
 
@@ -140,8 +140,12 @@ if ( ! function_exists( 'wizhi_shortcode_page_cont' ) ) {
 		$retour .= '<a target="_blank" href="' . get_page_link( $id ) . '">';
 		$retour .= get_the_post_thumbnail( $id, $thumbs );
 		$retour .= '</a>';
-
-		$retour .= wp_trim_words( $page->post_content, $cont, "..." );
+		
+		if ($cont == 0) {
+			$retour .= $page->post_content;
+		} else {
+			$retour .= wp_trim_words( $page->post_content, $cont, "..." );
+		}
 
 		if ( $more == true ) {
 			$retour .= '<a target="_blank" href="' . get_page_link( $id ) . '">更多>></a>';
