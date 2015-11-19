@@ -78,7 +78,7 @@ class GambitPBSandwichToolbar {
 		$toolbarButtons[] = array(
 			'action' => 'clone',
 			'icon' => 'dashicons dashicons-images-alt',
-			'label' => __( 'Clone', 'pbsandwich' ),
+			'label' => __( '复制', 'pbsandwich' ),
 			'priority' => 0,
 		);
 		

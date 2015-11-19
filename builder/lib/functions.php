@@ -14,17 +14,17 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 function sandwich_functions_display_order() {
 	$output = array();
-	$output['author'] = __( 'Author', 'pbsandwich' );
-	$output['date'] = __( 'Item Date', 'pbsandwich' );
-	$output['title'] = __( 'Title', 'pbsandwich' );
-	$output['rand'] = __( 'Randomized', 'pbsandwich' );
+	$output['author'] = __( '作者', 'pbsandwich' );
+	$output['date'] = __( '日期', 'pbsandwich' );
+	$output['title'] = __( '标题', 'pbsandwich' );
+	$output['rand'] = __( '随机', 'pbsandwich' );
 	return $output;
 }
 
 function sandwich_functions_display_dir() {
 	$output = array();
-	$output['ASC'] = __( 'Ascending', 'pbsandwich' );
-	$output['DESC'] = __( 'Descending', 'pbsandwich' );
+	$output['ASC'] = __( '升序', 'pbsandwich' );
+	$output['DESC'] = __( '降序', 'pbsandwich' );
 	return $output;
 }
 
@@ -42,7 +42,7 @@ function sandwich_functions_posttype_list( $type = "forum", $id = "false" ) {
 	$loop = new WP_Query( $args );
 	
 	$output = array(
-		0 => sprintf( '— %s —', __( 'Select', 'pbsandwich' ) )
+		0 => sprintf( '— %s —', __( '选择', 'pbsandwich' ) )
 	);
 	
 	if ( $loop->have_posts() ) {
@@ -90,7 +90,7 @@ function sandwich_functions_term_list( $taxonomyName = 'post_tag' ) {
 	) );
 	
 	$output = array(
-		0 => sprintf( '— %s —', __( 'Select', 'pbsandwich' ) )
+		0 => sprintf( '— %s —', __( '选择', 'pbsandwich' ) )
 	);
 	
 	if ( is_wp_error( $terms ) ) {

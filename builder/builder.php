@@ -24,7 +24,6 @@ defined( 'PBS_FILE' ) or define( 'PBS_FILE', __FILE__ );
 
 // General list of essential files for the plugin itself or used by all shortcakes.
 require_once( PBS_PATH . 'lib/columns.php' );
-require_once( PBS_PATH . 'lib/welcome.php' );
 require_once( PBS_PATH . 'lib/functions.php' );
 require_once( PBS_PATH . 'lib/toolbar.php' );
 
@@ -175,7 +174,7 @@ class GambitPBSandwich {
 	
 	public function addShortcodeButton() {
 		if ( apply_filters( 'pbs_add_shortcode_button', true ) ) {
-			echo '<a href="#" class="button sandwich-add-shortcode"><span class="wp-media-buttons-icon dashicons dashicons-migrate"></span><span class="wp-media-buttons-icon dashicons dashicons-migrate"></span> ' . __( 'Add Post Element', 'pbsandwich' ) . '</a>';
+			echo '<a href="#" class="button sandwich-add-shortcode"><span class="dashicons dashicons-plus st_add_content"></span>' . __( '添加内容', 'pbsandwich' ) . '</a>';
 		}
 	}
 	
