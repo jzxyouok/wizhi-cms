@@ -52,13 +52,17 @@ function wizhi_shortcode_page_cont_ui() {
                     'label' => __( '按钮文字' ),
                     'attr'  => 'text',
                     'type'  => 'text',
-                    'value' => '链接文本',
+                    'meta'   => array(
+                        'placeholder' => '请输入链接文字',
+                    ),
                 ),
                 array(
                     'label' => __( '按钮连接' ),
                     'attr'  => 'url',
                     'type'  => 'url',
-                    'value' => 'http://',
+                    'meta'   => array(
+                        'placeholder' => 'http://',
+                    ),
                 ),
             ),
         )
@@ -106,7 +110,9 @@ function wizhi_shortcode_page_cont_ui() {
                     'label' => __( '内容' ),
                     'attr'  => 'content',
                     'type'  => 'text',
-                    'value' => '这是标题内容',
+                    'meta'   => array(
+                        'placeholder' => '请输入标题文字',
+                    ),
                 )
             ),
         )
@@ -135,7 +141,9 @@ function wizhi_shortcode_page_cont_ui() {
                     'label' => __( '提示内容' ),
                     'attr'  => 'content',
                     'type'  => 'textarea',
-                    'value' => '请输入提示信息内容',
+                    'meta'   => array(
+                        'placeholder' => '请输入提示信息内容',
+                    ),
                 ),
             ),
         )
@@ -301,6 +309,9 @@ function wizhi_shortcode_page_cont_ui() {
                     'attr'  => 'class',
                     'type'  => 'text',
                     'value' => '',
+                    'meta'   => array(
+                        'placeholder' => '用来自定义CSS,可不填',
+                    ),
                 ),
             ),
         )

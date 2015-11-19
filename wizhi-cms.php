@@ -12,32 +12,35 @@ License URI:        http://opensource.org/licenses/MIT
 
 define('WIZHI_CMS', plugin_dir_path(__FILE__));
 
-//快速添加文章类型和分类法
+// 快速添加文章类型和分类法
 require_once(WIZHI_CMS . 'modules/post_types.php');
 
-//显示分页
+// 添加页面分栏功能
+require_once(WIZHI_CMS . 'builder/builder.php');
+
+// 显示分页
 require_once(WIZHI_CMS . 'modules/pagination.php');
 
-//常用简码
+// 常用简码
 require_once(WIZHI_CMS . 'modules/shortcodes.php');
 require_once(WIZHI_CMS . 'modules/shortcodes-ui.php');
 
-//过滤菜单和分类列表HTML
+// 过滤菜单和分类列表HTML
 require_once(WIZHI_CMS . 'modules/walker.php');
 
-//图片缩放
+// 图片缩放
 require_once(WIZHI_CMS . 'modules/resizer.php');
 
-//辅助函数
+// 辅助函数
 require_once(WIZHI_CMS . 'modules/helper.php');
 
-//相关文章功能
+// 相关文章功能
 require_once(WIZHI_CMS . 'modules/related.php');
 
-//添加的过滤功能
+// 添加的过滤功能
 require_once(WIZHI_CMS . 'modules/filters.php');
 
-//加速优化功能
+// 加速优化功能
 require_once(WIZHI_CMS . 'modules/optimization.php');
 
 
