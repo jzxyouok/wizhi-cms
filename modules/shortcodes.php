@@ -50,7 +50,7 @@
 
             // 输出
             $retour = '';
-            $retour .= '<h2 class="ui-heading-' . $type . '">' . $content . '</h2>';
+            $retour .= '<h2 class="ui-heading ui-heading-' . $type . '">' . $content . '</h2>';
 
             return $retour;
 

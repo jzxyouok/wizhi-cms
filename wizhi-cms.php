@@ -43,10 +43,15 @@ require_once(WIZHI_CMS . 'modules/filters.php');
 // 加速优化功能
 require_once(WIZHI_CMS . 'modules/optimization.php');
 
+// 插件设置
+require_once(WIZHI_CMS . 'settings.php');
+
+// 获取插件设置值
+$wizhi_use_cms_front =	get_option('wizhi_use_cms_front');
 
 //加载 CSS 和 JS
-if( !defined( 'WIZHI_LOAD_JSCSS' ) || WIZHI_LOAD_JSCSS == true ) {
-	add_action( 'wp_enqueue_scripts', 'wizhi_zui_scripts' );  
+if( $wizhi_use_cms_front ) {
+	add_action( 'wp_enqueue_scripts', 'wizhi_zui_scripts' );
 	add_action( 'wp_enqueue_scripts', 'wizhi_zui_style' );
 }
 
