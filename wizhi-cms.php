@@ -43,6 +43,9 @@ require_once(WIZHI_CMS . 'modules/filters.php');
 // 加速优化功能
 require_once(WIZHI_CMS . 'modules/optimization.php');
 
+// 自定义tinymce按钮
+require_once(WIZHI_CMS . 'modules/tinymce.php');
+
 // 插件设置
 require_once(WIZHI_CMS . 'settings.php');
 

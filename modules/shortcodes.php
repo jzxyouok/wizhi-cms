@@ -71,7 +71,7 @@
     if (!function_exists('wizhi_shortcode_alert')) {
         function wizhi_shortcode_alert($atts) {
             $default = array(
-                'type'    => 'success',
+                'type'    => 'info',
                 'content' => '这是提示信息。',
             );
             extract(shortcode_atts($default, $atts));
@@ -585,6 +585,7 @@
                 }
 
                 if ($stype == "full") {
+                    $feat_image_url = '';
                     // 全宽模式，使用背景显示图片
                     if (has_post_thumbnail()) {
                         $feat_image_url = wp_get_attachment_url(get_post_thumbnail_id());
@@ -660,7 +661,7 @@
                             maxSlides: <?php echo $options["maxslides"] ?>,
                             slideWidth: <?php echo $options["slidewidth"] ?>,
                             slideMargin: <?php echo $options["slidemargin"] ?>,
-                            infiniteLoop: false,
+                            infiniteLoop: true,
                             hideControlOnEnd: true,
                             auto: <?php echo $options["auto"] ?>,
                         });
